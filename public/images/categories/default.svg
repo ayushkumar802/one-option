@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="g-def" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="url(#g-def)"/>
+  <!-- User badge / Briefcase / One Option OO emblem -->
+  <circle cx="50" cy="40" r="12" fill="#ffffff" fill-opacity="0.95"/>
+  <path d="M26 72c0-13 11-20 24-20s24 7 24 20" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
+  <circle cx="50" cy="40" r="4" fill="#bef264"/>
+</svg>

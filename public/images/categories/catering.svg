@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="g-cat" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="url(#g-cat)"/>
+  <!-- Cloche / Catering plate icon -->
+  <path d="M28 62h44M24 67h52" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M30 60c0-12 9-22 20-22s20 10 20 22H30z" fill="#ffffff" fill-opacity="0.95"/>
+  <circle cx="50" cy="34" r="4" fill="#bef264"/>
+</svg>

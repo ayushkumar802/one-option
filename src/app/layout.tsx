@@ -1,0 +1,130 @@
+import type { Metadata, Viewport } from 'next';
+import { Inter, Playfair_Display } from 'next/font/google';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './globals.css';
+import { siteConfig } from '@/config/site';
+import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/structured-data';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
+import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
+import { MobileBottomBar } from '@/components/layout/MobileBottomBar';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
+});
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#FAFAF7',
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.seo.defaultTitle,
+    template: siteConfig.seo.titleTemplate,
+  },
+  description: siteConfig.seo.defaultDescription,
+  keywords: [
+    'furniture maker in Pune',
+    'best furniture maker near me',
+    'carpenter in Pune',
+    'best carpenter near me',
+    'top carpenter in Pune',
+    'custom wooden furniture Pune',
+    'wooden furniture maker Pune',
+    'woodwork Pune',
+    'modular furniture Pune',
+    'modular kitchen Pune',
+    'bedroom furniture Pune',
+    'office furniture Pune',
+    'carpenter near me',
+    'furniture maker near me',
+  ],
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  // Favicon: place icon.png (512x512) and apple-icon.png (180x180) in src/app/
+  // Next.js picks them up automatically, so no `icons` block is needed.
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: siteConfig.seo.defaultTitle,
+    description: siteConfig.seo.defaultDescription,
+    images: [
+      {
+        url: siteConfig.seo.ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.seo.defaultTitle,
+    description: siteConfig.seo.defaultDescription,
+    images: [siteConfig.seo.ogImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: '/',
+  },
+};
+
+// Escape "<" so the JSON can never break out of the script tag
+const jsonLd = (data: unknown) =>
+  JSON.stringify(data).replace(/</g, '\\u003c');
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLd(generateOrganizationSchema()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLd(generateWebSiteSchema()),
+          }}
+        />
+      </head>
+      <body>
+        <Header />
+        <main id="main-content">{children}</main>
+        <Footer />
+        <WhatsAppButton />
+        <MobileBottomBar />
+      </body>
+    </html>
+  );
+}
