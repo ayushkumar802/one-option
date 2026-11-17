@@ -6,16 +6,16 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { ContactForm } from '@/components/contact/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | One Option Manpower Solutions',
+  title: 'Contact Manpower Indore | Hire Workers | OneOption',
   description:
-    'Get in touch with One Option in Indore. Inquire about industrial labour, contract staffing, or apply for verified jobs across Indore, Pithampur, and MP.',
+    'Get in touch with OneOption (manpowerindore.in) in Indore. Inquire about industrial labour, contract staffing, or apply for verified jobs across Indore, Pithampur, and MP.',
   alternates: {
     canonical: '/contact',
   },
   openGraph: {
-    title: 'Contact Us | ' + siteConfig.name,
+    title: 'Contact Manpower Indore | OneOption',
     description:
-      'Reach out to One Option for workforce solutions, hiring inquiries, or job applications in Indore & MP.',
+      'Reach out to OneOption for manpower supply, staffing solutions, hiring inquiries, or job applications in Indore & MP.',
     url: `${siteConfig.url}/contact`,
   },
 };

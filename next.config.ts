@@ -7,6 +7,32 @@ const allowedDevOrigins = Array.from(
 );
 const nextConfig: NextConfig = {
   allowedDevOrigins,
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'manpowerinindore.in',
+          },
+        ],
+        destination: 'https://www.manpowerindore.in/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.manpowerinindore.in',
+          },
+        ],
+        destination: 'https://www.manpowerindore.in/:path*',
+        permanent: true,
+      },
+    ];
+  },
   images: {
     dangerouslyAllowLocalIP: true,
     remotePatterns: [

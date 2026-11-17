@@ -103,7 +103,7 @@ export function Footer() {
         {/* Footer Bottom */}
         <div className="footer-bottom">
           <p className="footer-copyright mb-0">
-            &copy; {currentYear} {siteConfig.name}. All rights reserved.
+            &copy; {currentYear} {siteConfig.name} (manpowerindore.in). All rights reserved.
           </p>
           {/* <SocialLinks /> */}
         </div>

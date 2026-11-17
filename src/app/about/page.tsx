@@ -16,16 +16,16 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us | One Option Manpower Solutions',
+  title: 'About OneOption | Leading Manpower Agency in Indore',
   description:
-    'Learn about One Option — Indore’s leading manpower supplier and staffing solutions partner. Providing vetted, compliant, and skilled workforce across Indore, Pithampur, Dewas, and MP.',
+    'Learn about OneOption (operating as manpowerindore.in) — Indore’s leading manpower supplier and contract staffing firm. Providing vetted, compliant, and skilled workforce across Indore, Pithampur, Dewas, and MP.',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About Us | ' + siteConfig.name,
+    title: 'About OneOption | Manpower Agency in Indore',
     description:
-      'Learn about One Option — Indore’s premier workforce solutions partner for industrial, warehousing, and corporate staffing.',
+      'Learn about OneOption (manpowerindore.in) — Indore’s premier workforce solutions partner for industrial, warehousing, and corporate staffing.',
     url: `${siteConfig.url}/about`,
   },
 };
@@ -160,7 +160,7 @@ export default function AboutPage() {
                     marginBottom: '1rem',
                   }}
                 >
-                  Headquartered in Indore, <strong>{siteConfig.name}</strong> is a
+                  Headquartered in Indore, <strong>{siteConfig.name}</strong> (operating as <em>manpowerindore.in</em>) is a
                   trusted manpower supply and contract staffing firm dedicated to
                   bridging the critical talent gap for expanding businesses across
                   Central India.

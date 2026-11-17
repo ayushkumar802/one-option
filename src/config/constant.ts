@@ -32,7 +32,7 @@ export const JOBS_SHEET_ID =
 export const APP_URL =
   process.env.NEXT_PUBLIC_APP_URL ||
   process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://www.oneoption.in";
+  "https://www.manpowerindore.in";
 
 /**
  * Helper to get the full copyable URL for a job.
@@ -43,12 +43,12 @@ export function getJobShareUrl(slug: string): string {
   let base = (APP_URL || '').trim();
 
   if (typeof window !== 'undefined' && window.location?.origin) {
-    if (!base || (window.location.hostname === 'localhost' && base.includes('oneoption.in'))) {
+    if (!base || (window.location.hostname === 'localhost' && (base.includes('oneoption') || base.includes('manpowerindore')))) {
       base = window.location.origin;
     }
   }
 
-  const cleanBase = (base || 'https://www.oneoption.in').replace(/\/+$/, '');
+  const cleanBase = (base || 'https://www.manpowerindore.in').replace(/\/+$/, '');
   return `${cleanBase}/jobs/${slug}`;
 }
 

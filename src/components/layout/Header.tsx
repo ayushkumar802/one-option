@@ -37,7 +37,7 @@ export function Header() {
     <>
       <header className={headerClass} role="banner">
         <div className="container d-flex align-items-center justify-content-between w-100">
-          <Link href="/" className="header-logo" aria-label="OneOption — Home">
+          <Link href="/" className="header-logo" aria-label="OneOption — Manpower Indore">
             <span className="logo-text">
               <span className="logo-text-one">One</span>
               <span className="logo-text-option">Option</span>

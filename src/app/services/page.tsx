@@ -7,9 +7,9 @@ import { ProcessSection } from '@/components/home/ProcessSection';
 import { CTASection } from '@/components/ui/CTASection';
 import { generateServiceSchema } from '@/lib/structured-data';
 
-const pageTitle = 'Manpower & Staffing Services in Indore';
+const pageTitle = 'Manpower Services in Indore | Industrial & Contract Staffing';
 const pageDescription =
-  'Complete workforce solutions in Indore and Madhya Pradesh. One Option provides contract staffing, industrial factory workers, warehouse staff, security guards, housekeeping, and corporate personnel.';
+  'Complete workforce & manpower solutions in Indore and Madhya Pradesh. OneOption (manpowerindore.in) provides contract staffing, industrial factory workers, warehouse staff, security guards, housekeeping, and corporate personnel.';
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    siteName: siteConfig.name,
-    title: `${pageTitle} | ${siteConfig.name}`,
+    siteName: 'Manpower Indore | OneOption',
+    title: `${pageTitle} | OneOption`,
     description: pageDescription,
     url: '/services',
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: siteConfig.seo.ogImage,
         width: 1200,
         height: 630,
-        alt: siteConfig.name,
+        alt: 'OneOption - Manpower Services Indore',
       },
     ],
   },

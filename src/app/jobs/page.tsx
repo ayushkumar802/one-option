@@ -7,9 +7,9 @@ import { JobFilters } from '@/components/jobs/JobFilters';
 import { JobGrid } from '@/components/jobs/JobGrid';
 import { CTASection } from '@/components/ui/CTASection';
 
-const pageTitle = 'Recent Job Openings in Indore';
+const pageTitle = 'Jobs in Indore | Manpower & Staffing Vacancies';
 const pageDescription =
-  'Browse latest verified job vacancies across catering, security, manufacturing, warehousing, and corporate sectors in Indore, MP. Apply directly through One Option.';
+  'Browse latest verified job vacancies across manufacturing, warehousing, catering, security, and corporate sectors in Indore, MP. Apply directly through OneOption (manpowerindore.in).';
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    siteName: siteConfig.name,
-    title: `${pageTitle} | ${siteConfig.name}`,
+    siteName: 'Manpower Indore | OneOption',
+    title: `${pageTitle} | OneOption`,
     description: pageDescription,
     url: '/jobs',
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: siteConfig.seo.ogImage,
         width: 1200,
         height: 630,
-        alt: siteConfig.name,
+        alt: 'OneOption - Jobs in Indore',
       },
     ],
   },

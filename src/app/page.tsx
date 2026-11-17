@@ -11,10 +11,9 @@ import { HomeCTA } from '@/components/home/HomeCTA';
 import '@/components/home/home.css';
 
 export const metadata: Metadata = {
-  // "absolute" skips the layout's "%s | RiyaCrafts" template,
-  // otherwise the brand name would appear twice in the title.
-  title: { absolute: siteConfig.seo.defaultTitle },
-  description: siteConfig.seo.defaultDescription,
+  title: { absolute: 'Manpower Indore | OneOption - Top Staffing & Labour Solutions' },
+  description:
+    'Indore’s leading manpower supplier and staffing solutions partner. OneOption (manpowerindore.in) provides verified industrial labour, factory workers, and warehouse staffing across Indore, Pithampur & MP.',
   alternates: {
     canonical: '/',
   },

@@ -302,111 +302,30 @@
 /* Hero visual (right side) */
 .oo-hero-visual {
   position: relative;
-  max-width: 460px;
+  max-width: 600px;
   margin-left: auto;
 }
 
-.oo-glass-card {
+/* Workers image wrapper */
+.oo-hero-img-wrap {
   position: relative;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 24px;
-  padding: var(--space-8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  /* Soft bottom fade so the people blend into the hero */
+  -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
 }
 
-.oo-glass-card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--space-6);
-}
-
-.oo-glass-card-title {
-  font-size: var(--fs-md);
-  font-weight: 600;
-  color: #fff;
-  margin: 0;
-}
-
-.oo-glass-card-tag {
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  color: var(--oo-950);
-  background: var(--oo-lime);
-  border-radius: 999px;
-  padding: 4px 10px;
-}
-
-.oo-industry-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-3);
-}
-
-.oo-industry {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-4) var(--space-2);
-  border-radius: var(--oo-radius-sm);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--oo-300);
-  font-size: var(--fs-xs);
-  text-align: center;
-  transition: background var(--transition-base), transform var(--transition-base);
-}
-
-.oo-industry span {
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 500;
-}
-
-.oo-industry:hover {
-  background: rgba(52, 211, 153, 0.15);
-  transform: translateY(-3px);
-}
-
-.oo-glass-card-foot {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin-top: var(--space-6);
-  padding-top: var(--space-5);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.oo-avatars {
-  display: flex;
-}
-
-.oo-avatars span {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 2px solid var(--oo-900);
-  margin-left: -10px;
-  display: grid;
-  place-items: center;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--oo-950);
-}
-
-.oo-avatars span:first-child { margin-left: 0; background: var(--oo-300); }
-.oo-avatars span:nth-child(2) { background: var(--oo-lime); }
-.oo-avatars span:nth-child(3) { background: #fde68a; }
-.oo-avatars span:nth-child(4) { background: #a7f3d0; }
-
-.oo-glass-card-foot p {
-  margin: 0;
-  font-size: var(--fs-sm);
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.4;
+.oo-hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* Magic: white pixels become transparent on the dark background */
+  mix-blend-mode: multiply;
+  /* Slight scale-up so the people feel larger / closer */
+  transform: scale(1.15);
+  filter: brightness(1.08) contrast(1.05);
 }
 
 .oo-float-chip {
@@ -935,7 +854,8 @@
   }
 
   .oo-hero-visual {
-    margin: var(--space-16) auto 0;
+    margin: var(--space-10) auto 0;
+    max-width: 420px;
   }
 
   .oo-float-chip.chip-top { right: -6px; }

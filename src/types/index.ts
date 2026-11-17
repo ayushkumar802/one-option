@@ -95,6 +95,7 @@ export interface BreadcrumbItem {
 
 export interface SiteConfig {
   name: string;
+  alternateNames?: string[];
   tagline: string;
   description: string;
   url: string;
