@@ -31,7 +31,7 @@ export function JobCard({ job, project, priority = false }: JobCardProps) {
         aria-label={`View details for ${currentJob.title}`}
       />
 
-      <div className="job-card-head">
+      <div className="job-card-main-row">
         <div className="job-card-logo">
           <div className="job-card-logo-inner">
             <Image
@@ -44,58 +44,59 @@ export function JobCard({ job, project, priority = false }: JobCardProps) {
             />
           </div>
         </div>
-        <div className="d-flex align-items-center gap-2">
-          {currentJob.jobType && (
-            <span className="job-card-type-badge">{currentJob.jobType}</span>
-          )}
-          <span className="job-card-badge">Now Hiring</span>
+
+        <div className="job-card-info">
+          <div className="job-card-header-line">
+            <h3 className="job-card-title">{currentJob.title}</h3>
+            <div className="job-card-badges-wrap">
+              {currentJob.jobType && (
+                <span className="job-card-type-badge">{currentJob.jobType}</span>
+              )}
+              <span className="job-card-badge desktop-only">Now Hiring</span>
+            </div>
+          </div>
+
+          <div className="job-card-company-row">
+            {currentJob.companyName && (
+              <span className="job-card-company">
+                <Building2 size={13} /> {currentJob.companyName}
+              </span>
+            )}
+            <span className="job-card-dot">•</span>
+            <p className="job-card-category">{currentJob.category}</p>
+          </div>
+
+          {/* Salary, Location & Experience in a compact inline row */}
+          <div className="job-card-meta-row">
+            {currentJob.salaryRange && (
+              <span className="job-card-salary-badge">
+                <IndianRupee size={12} /> {currentJob.salaryRange}
+              </span>
+            )}
+            {currentJob.location && (
+              <span className="job-card-location">
+                <MapPin size={12} /> {currentJob.location}
+              </span>
+            )}
+            {currentJob.experience && (
+              <span className="job-card-meta-chip desktop-only">
+                <Briefcase size={12} /> {currentJob.experience}
+              </span>
+            )}
+            {currentJob.postedDate && (
+              <span className="job-card-posted desktop-only">
+                <Calendar size={12} /> {currentJob.postedDate}
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
-      <div className="job-card-company-row">
-        <p className="job-card-category">{currentJob.category}</p>
-        {currentJob.companyName && (
-          <span className="job-card-company">
-            <Building2 size={13} /> {currentJob.companyName}
-          </span>
-        )}
-      </div>
+      {description && <p className="job-card-description desktop-only">{description}</p>}
 
-      <h3 className="job-card-title">{currentJob.title}</h3>
-
-      {/* Salary & Meta Badges */}
-      <div className="job-card-meta-row">
-        {currentJob.salaryRange && (
-          <span className="job-card-salary-badge">
-            <IndianRupee size={13} /> {currentJob.salaryRange}
-          </span>
-        )}
-        {currentJob.experience && (
-          <span className="job-card-meta-chip">
-            <Briefcase size={13} /> {currentJob.experience}
-          </span>
-        )}
-      </div>
-
-      {/* Location and Posted Date */}
-      <div className="job-card-meta-sub">
-        {currentJob.location && (
-          <span className="job-card-location">
-            <MapPin size={14} /> {currentJob.location}
-          </span>
-        )}
-        {currentJob.postedDate && (
-          <span className="job-card-posted">
-            <Calendar size={13} /> {currentJob.postedDate}
-          </span>
-        )}
-      </div>
-
-      {description && <p className="job-card-description">{description}</p>}
-
-      {/* Key Skills Tags */}
+      {/* Key Skills Tags (Desktop only) */}
       {skills.length > 0 && (
-        <div className="job-card-skills-row">
+        <div className="job-card-skills-row desktop-only">
           {skills.slice(0, 3).map((skill: string) => (
             <span key={skill} className="job-skill-chip">
               {skill}
@@ -110,7 +111,7 @@ export function JobCard({ job, project, priority = false }: JobCardProps) {
       {/* Footer with view link and copy to clipboard button */}
       <div className="job-card-footer">
         <span className="job-card-link">
-          View Job &amp; Apply <ArrowRight size={14} />
+          View &amp; Apply <ArrowRight size={13} />
         </span>
         <CopyJobButton slug={currentJob.slug} title={currentJob.title} />
       </div>

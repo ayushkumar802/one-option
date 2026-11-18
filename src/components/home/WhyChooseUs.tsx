@@ -44,7 +44,7 @@ const reasons = [
 
 export function WhyChooseUs() {
   return (
-    <section className="section" aria-label="Why choose us">
+    <section className="section oo-why-us" aria-label="Why choose us">
       <div className="container">
         <SectionHeading
           label="Why Us"

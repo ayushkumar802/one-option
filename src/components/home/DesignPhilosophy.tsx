@@ -19,7 +19,7 @@ const panelPoints = [
 
 export function DesignPhilosophy() {
   return (
-    <section className="section" aria-label="Our hiring promise">
+    <section className="section oo-promise-section" aria-label="Our hiring promise">
       <div className="container">
         <div className="row align-items-center g-5">
           <div className="col-lg-5">

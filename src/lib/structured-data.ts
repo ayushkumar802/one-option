@@ -24,9 +24,10 @@ export function generateOrganizationSchema() {
     image: `${siteConfig.url}${siteConfig.seo.ogImage}`,
     address: {
       '@type': 'PostalAddress',
+      streetAddress: siteConfig.address.street || 'Tejaji Nagar',
       addressLocality: siteConfig.address.city,
       addressRegion: siteConfig.address.state,
-      postalCode: '452001',
+      postalCode: siteConfig.address.postalCode || '452020',
       addressCountry: 'IN',
     },
     geo: {
@@ -155,9 +156,10 @@ export function generateAboutSchema() {
       description: siteConfig.description,
       address: {
         '@type': 'PostalAddress',
+        streetAddress: siteConfig.address.street || 'Tejaji Nagar',
         addressLocality: siteConfig.address.city,
         addressRegion: siteConfig.address.state,
-        postalCode: '452001',
+        postalCode: siteConfig.address.postalCode || '452020',
         addressCountry: 'IN',
       },
     },

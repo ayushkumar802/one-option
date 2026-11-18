@@ -867,24 +867,186 @@
 }
 
 @media (max-width: 767.98px) {
-  .oo-hero-buttons .btn {
-    width: 100%;
+  /* --- Hero Mobile --- */
+  .oo-hero {
+    padding: calc(var(--header-height) + var(--space-2)) 0 var(--space-8);
   }
 
+  .oo-hero-badge {
+    padding: 4px 11px;
+    font-size: 0.68rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .oo-hero-title {
+    font-size: clamp(1.4rem, 1rem + 1.8vw, 1.85rem);
+    line-height: 1.15;
+    margin-bottom: var(--space-3);
+  }
+
+  .oo-hero-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: var(--space-5);
+    line-height: 1.5;
+  }
+
+  /* Compact side-by-side buttons */
+  .oo-hero-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: var(--space-6);
+  }
+
+  .oo-hero-buttons .btn {
+    flex: 1;
+    width: auto;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: 999px;
+  }
+
+  .oo-hero-buttons .btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* 3 stats in one clean row */
   .oo-hero-stats {
-    gap: var(--space-6);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 6px;
+    padding-top: var(--space-3);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .oo-hero-stat-value {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .oo-hero-stat-label {
+    font-size: 0.65rem;
+    line-height: 1.2;
+  }
+
+  .oo-hero-visual {
+    margin: var(--space-4) auto 0;
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  /* --- Home Sections Mobile --- */
+  .home-page .section-title {
+    font-size: 1.45rem;
+    line-height: 1.2;
+    margin-bottom: var(--space-3);
+  }
+
+  .home-page .section-subtitle {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .home-page .section-label {
+    font-size: 0.65rem;
+    margin-bottom: var(--space-2);
+  }
+
+  /* --- Services Mobile --- */
+  .home-page .service-card {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .home-page .service-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .home-page .service-card-title {
+    font-size: 1rem;
   }
 
   .oo-services-note {
     border-radius: var(--oo-radius);
+    padding: var(--space-4) var(--space-5);
+    font-size: 0.85rem;
   }
 
-  .oo-promise-panel {
-    padding: var(--space-10) var(--space-6);
+  /* --- Hide Hiring Promise Section on Mobile --- */
+  .oo-promise-section {
+    display: none !important;
+  }
+
+  /* --- Process / Timeline Mobile --- */
+  .oo-timeline::before {
+    left: 20px;
+  }
+
+  .home-page .process-step {
+    padding-left: calc(42px + var(--space-4));
+  }
+
+  .home-page .process-step-number {
+    width: 42px;
+    height: 42px;
+    font-size: 0.9rem;
+  }
+
+  .oo-step-body {
+    padding: var(--space-4);
+  }
+
+  .oo-step-body h3 {
+    font-size: 1rem;
+  }
+
+  .oo-step-body p {
+    font-size: 0.82rem;
+  }
+
+  /* --- Hide Why Choose Us Section on Mobile --- */
+  .oo-why-us {
+    display: none !important;
+  }
+
+  /* --- Testimonials Mobile --- */
+  .home-page .testimonial-card {
+    padding: var(--space-8) var(--space-5) var(--space-5);
+  }
+
+  .home-page .testimonial-text {
+    font-size: 0.9rem;
+  }
+
+  /* --- CTA Banner Mobile --- */
+  .home-page .oo-cta {
+    padding: var(--space-10) 0 var(--space-16);
   }
 
   .home-page .oo-cta .container {
     border-radius: 0;
+    padding: var(--space-10) var(--space-5);
+  }
+
+  .home-page .oo-cta .cta-title {
+    font-size: 1.35rem;
+  }
+
+  .home-page .oo-cta .cta-subtitle {
+    font-size: 0.875rem;
   }
 }
 
@@ -895,6 +1057,18 @@
 
   .oo-float-chip {
     display: none;
+  }
+
+  .oo-hero-title {
+    font-size: 1.45rem;
+  }
+
+  .oo-hero-stats {
+    gap: var(--space-3);
+  }
+
+  .oo-hero-stat-value {
+    font-size: 1.05rem;
   }
 }
 

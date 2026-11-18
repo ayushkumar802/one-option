@@ -15,13 +15,15 @@ export const siteConfig: SiteConfig = {
   description:
     'One Option (manpowerindore.in) is Indore’s premier manpower supplier and contract staffing firm. Providing verified industrial labour, warehouse staff, factory workers, and facility management across Indore, Pithampur, and MP.',
   url: APP_URL,
-  email: process.env.NEXT_PUBLIC_BUSINESS_EMAIL || 'contact@manpowerindore.in',
-  phone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+91 6299147709',
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+91 6299147709',
+  email: process.env.NEXT_PUBLIC_BUSINESS_EMAIL || 'oneoptionmanpower@gmail.com',
+  phone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+91 98260 84399',
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+91 98260 84399',
   address: {
+    street: 'Tejaji Nagar',
     city: 'Indore',
     state: 'Madhya Pradesh',
     country: 'India',
+    postalCode: '452020',
   },
   socialLinks: {},
   seo: {

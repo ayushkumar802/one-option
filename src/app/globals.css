@@ -1410,11 +1410,11 @@ img {
   }
 
   .section {
-    padding: var(--space-12) 0;
+    padding: var(--space-10) 0;
   }
 
   .section-lg {
-    padding: var(--space-16) 0;
+    padding: var(--space-12) 0;
   }
 
   .hero {
@@ -1431,7 +1431,17 @@ img {
   }
 
   .page-header {
-    padding: calc(var(--header-height) + var(--space-10)) 0 var(--space-10);
+    padding: calc(var(--header-height) + var(--space-6)) 0 var(--space-6);
+  }
+
+  .page-header-title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .page-header-subtitle {
+    font-size: 0.875rem;
+    line-height: 1.5;
   }
 
   .mobile-bottom-bar {
@@ -1459,6 +1469,315 @@ img {
     width: 100%;
     max-width: 300px;
   }
+
+  /* --- Section Headings Mobile --- */
+  .section-label {
+    font-size: 0.65rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .section-title {
+    font-size: 1.45rem;
+    line-height: 1.2;
+    margin-bottom: var(--space-3);
+  }
+
+  .section-subtitle {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* --- Job Card Mobile Ultra-Compact & Low Height --- */
+  .desktop-only {
+    display: none !important;
+  }
+
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  /* Grid spacing between cards on mobile - reduce from 24px to 10px */
+  .row.g-4 {
+    --bs-gutter-y: 0.65rem;
+  }
+
+  .job-card {
+    padding: 0.75rem 0.85rem;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(6, 78, 59, 0.05);
+    border: 1px solid #e2ece7;
+  }
+
+  .job-card-main-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 0;
+  }
+
+  .job-card-logo {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    padding: 2px;
+    border-radius: 10px;
+    border-width: 1.5px;
+    margin-top: 2px;
+  }
+
+  .job-card-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .job-card-header-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 2px;
+  }
+
+  .job-card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .job-card-badges-wrap {
+    flex-shrink: 0;
+  }
+
+  .job-card-type-badge {
+    font-size: 0.62rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: #f1f5f9;
+    color: #047857;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .job-card-company-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+    font-size: 0.72rem;
+    color: #4b5f57;
+  }
+
+  .job-card-company {
+    font-size: 0.72rem;
+    color: #065f46;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }
+
+  .job-card-dot {
+    color: #94a3b8;
+    font-size: 0.65rem;
+    margin: 0 1px;
+  }
+
+  .job-card-category {
+    font-size: 0.65rem;
+    color: #059669;
+    font-weight: 700;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .job-card-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 2px 0 0 0;
+    font-size: 0.72rem;
+  }
+
+  .job-card-salary-badge {
+    font-size: 0.68rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+    white-space: nowrap;
+  }
+
+  .job-card-location {
+    font-size: 0.7rem;
+    color: #64748b;
+    margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+    gap: 3px;
+  }
+
+  .job-card-location svg {
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+  }
+
+  .job-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.4rem;
+    margin-top: 0.45rem;
+    border-top: 1px dashed #e2ece7;
+  }
+
+  .job-card-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #047857;
+    gap: 0.35rem;
+  }
+
+  .job-card-copy-btn {
+    padding: 3px 8px;
+    font-size: 0.65rem;
+    border-radius: 999px;
+  }
+
+  .job-card:hover {
+    transform: translateY(-2px);
+  }
+
+  /* --- CTA Section Mobile --- */
+  .cta-section {
+    padding: var(--space-10) 0;
+  }
+
+  .cta-title {
+    font-size: 1.35rem !important;
+    line-height: 1.2;
+  }
+
+  .cta-subtitle {
+    font-size: 0.875rem;
+  }
+
+  /* --- About Page Mobile --- */
+  .about-feature-panel {
+    padding: 1.5rem 1.25rem;
+    border-radius: 18px;
+  }
+
+  .about-panel-title {
+    font-size: 1.25rem;
+  }
+
+  .about-panel-desc {
+    font-size: 0.85rem;
+  }
+
+  .about-panel-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .about-panel-item-text h4 {
+    font-size: 0.9rem;
+  }
+
+  .about-panel-item-text p {
+    font-size: 0.78rem;
+  }
+
+  .about-panel-stat-num {
+    font-size: 1.15rem;
+  }
+
+  .about-panel-stat-label {
+    font-size: 0.65rem;
+  }
+
+  .about-value-card {
+    padding: 1.25rem;
+    border-radius: 14px;
+  }
+
+  .about-value-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    margin-bottom: 0.85rem;
+  }
+
+  .about-value-title {
+    font-size: 1rem;
+  }
+
+  .about-value-text {
+    font-size: 0.82rem;
+  }
+
+  .about-mv-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .about-mv-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .about-mv-title {
+    font-size: 1.15rem;
+  }
+
+  .about-mv-text {
+    font-size: 0.85rem;
+  }
+
+  .about-stat-card {
+    padding: 1.25rem 1rem;
+    border-radius: 14px;
+  }
+
+  .about-stat-number {
+    font-size: 1.75rem;
+  }
+
+  .about-stat-label {
+    font-size: 0.72rem;
+  }
+
+  /* --- Footer Mobile --- */
+  .footer-title {
+    font-size: 1.15rem;
+  }
+
+  .footer-description {
+    font-size: 0.85rem;
+  }
+
+  .footer-heading {
+    font-size: 0.9rem;
+  }
+
+  .footer-link {
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -1477,6 +1796,19 @@ img {
   .job-filter-btn {
     padding: var(--space-1) var(--space-3);
     font-size: 0.625rem;
+  }
+
+  /* Page headers even tighter */
+  .page-header {
+    padding: calc(var(--header-height) + var(--space-4)) 0 var(--space-4);
+  }
+
+  .page-header-title {
+    font-size: 1.3rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
   }
 }
 
@@ -1552,11 +1884,44 @@ img {
   border-radius: 20px;
 }
 
-.job-card-company-row {
+.job-card-main-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.job-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.job-card-header-line {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.75rem;
   margin-bottom: 0.25rem;
+}
+
+.job-card-badges-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.job-card-dot {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  margin: 0 4px;
+}
+
+.job-card-company-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0.35rem;
 }
 
 .job-card-company {
@@ -1573,7 +1938,7 @@ img {
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  margin: 0.5rem 0;
+  margin: 0.4rem 0;
 }
 
 .job-card-salary-badge {
@@ -1640,7 +2005,6 @@ img {
   font-weight: 500;
 }
 
-
 .job-card:hover {
   color: inherit;
   transform: translateY(-6px);
@@ -1656,10 +2020,10 @@ img {
 }
 
 .job-card-logo {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   flex-shrink: 0;
-  padding: 6px;
+  padding: 5px;
   border-radius: 50%;
   background: #ffffff;
   border: 2px solid #d1fae5;
@@ -1707,15 +2071,15 @@ img {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #059669;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0;
 }
 
 .job-card-title {
   font-family: var(--font-body);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: #0b2b20;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
   line-height: 1.35;
   transition: color 0.15s ease;
 }
@@ -1725,12 +2089,11 @@ img {
 }
 
 .job-card-location {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 0.85rem;
+  gap: 4px;
+  font-size: 0.8rem;
   color: #4b5f57;
-  margin-bottom: 0.75rem;
 }
 
 .job-card-location svg {
@@ -1741,7 +2104,7 @@ img {
   font-size: 0.875rem;
   color: #4b5f57;
   line-height: 1.6;
-  margin-bottom: 1.25rem;
+  margin: 0.75rem 0 1rem;
 }
 
 .job-card-footer {

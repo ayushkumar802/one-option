@@ -4,6 +4,60 @@ import { SHEET_FETCH_URL, CACHE_TIME, DOC_FETCH_URL } from "@/config/constant";
 let memoryCache: { [sheetId: string]: { data: any[]; timestamp: number } } = {};
 const MEMORY_TTL = 60 * 1000; // 60 seconds
 
+async function fetchFromGoogleSheetCsv(sheetId: string): Promise<any[] | null> {
+    try {
+        const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
+        const res = await fetch(csvUrl, { next: { revalidate: CACHE_TIME } });
+        if (!res.ok) return null;
+        const csvText = await res.text();
+        if (csvText.trim().startsWith('<')) return null;
+
+        const lines = csvText.split(/\r?\n/).filter((l) => l.trim().length > 0);
+        if (lines.length <= 1) return [];
+
+        const parseLine = (line: string): string[] => {
+            const result: string[] = [];
+            let current = '';
+            let inQuotes = false;
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                if (char === '"') {
+                    if (inQuotes && line[i + 1] === '"') {
+                        current += '"';
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current.trim());
+            return result;
+        };
+
+        const headers = parseLine(lines[0]);
+        const rows: any[] = [];
+        for (let i = 1; i < lines.length; i++) {
+            const vals = parseLine(lines[i]);
+            const obj: any = {};
+            headers.forEach((h, idx) => {
+                if (h) obj[h] = vals[idx] !== undefined ? vals[idx] : '';
+            });
+            if (obj.title || obj.slug) {
+                rows.push(obj);
+            }
+        }
+        return rows;
+    } catch (e) {
+        console.error("Direct Google Sheet CSV fetch failed:", e);
+        return null;
+    }
+}
+
 export async function getData(sheetId: string) {
     const now = Date.now();
     if (memoryCache[sheetId] && (now - memoryCache[sheetId].timestamp) < MEMORY_TTL) {
@@ -11,25 +65,38 @@ export async function getData(sheetId: string) {
     }
 
     try {
+        let rawData: any[] | null = null;
         const response = await fetch(`${SHEET_FETCH_URL}?id=${sheetId}`, {
             next: { revalidate: CACHE_TIME },
             redirect: 'follow',
         });
-        if (!response.ok) {
-            console.error(`Sheet fetch failed: HTTP ${response.status}`);
+
+        if (response.ok) {
+            const text = await response.text();
+            if (!text.trim().startsWith('<')) {
+                try {
+                    const parsedJson = JSON.parse(text);
+                    if (Array.isArray(parsedJson)) {
+                        rawData = parsedJson;
+                    }
+                } catch {
+                    // JSON parse error, will try CSV fallback
+                }
+            }
+        }
+
+        // Automatic fallback: If Apps Script failed or returned an HTML login page, fetch directly from Google Sheet CSV
+        if (!rawData) {
+            console.log("Apps Script returned non-JSON. Falling back to direct Google Sheet CSV export...");
+            rawData = await fetchFromGoogleSheetCsv(sheetId);
+        }
+
+        if (!rawData) {
+            console.error("Could not fetch data via Apps Script or direct CSV export.");
             return memoryCache[sheetId] ? memoryCache[sheetId].data : null;
         }
-        const text = await response.text();
-        if (text.trim().startsWith('<')) {
-            console.error("Google Apps Script returned an HTML page instead of JSON. Check Sheet permissions ('Anyone with link can view') and Apps Script deployment ('Who has access: Anyone').");
-            return memoryCache[sheetId] ? memoryCache[sheetId].data : null;
-        }
-        const data = JSON.parse(text);
-        if (!Array.isArray(data)) {
-            console.error("Google Apps Script returned non-array data:", data);
-            return memoryCache[sheetId] ? memoryCache[sheetId].data : null;
-        }
-        const parsed = data.map((item: any) => {
+
+        const parsed = rawData.map((item: any) => {
             // Helper to parse comma-separated lists
             const parseList = (val: any) =>
                 typeof val === 'string'

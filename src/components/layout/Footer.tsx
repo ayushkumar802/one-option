@@ -88,6 +88,7 @@ export function Footer() {
             <div className="footer-contact-item">
               <MapPin size={16} className="footer-contact-icon" />
               <span>
+                {siteConfig.address.street ? `${siteConfig.address.street}, ` : ''}
                 {siteConfig.address.city}, {siteConfig.address.state},{' '}
                 {siteConfig.address.country}
               </span>

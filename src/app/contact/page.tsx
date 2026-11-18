@@ -225,6 +225,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                       Location &amp; Operations
                     </p>
                     <p style={{ fontSize: 'var(--fs-sm)', color: 'var(--color-secondary)', marginBottom: 0 }}>
+                      {siteConfig.address.street ? `${siteConfig.address.street}, ` : ''}
                       {siteConfig.address.city}, {siteConfig.address.state},{' '}
                       {siteConfig.address.country}
                     </p>
