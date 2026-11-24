@@ -20,7 +20,8 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === '/';
+  // Resilient check for Home page: handles root '/', empty string '', or null during SSR/external link entry
+  const isHome = !pathname || pathname === '/' || pathname === '';
 
   useEffect(() => {
     const handleScroll = () => {
