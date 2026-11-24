@@ -35,6 +35,9 @@ export const metadata: Metadata = {
   },
 };
 
+// Revalidate jobs list every 60 seconds
+export const revalidate = 60;
+
 interface JobsPageProps {
   searchParams: Promise<{ category?: string }>;
 }

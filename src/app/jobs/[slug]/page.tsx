@@ -16,6 +16,10 @@ interface JobPageProps {
   params: Promise<{ slug: string }>;
 }
 
+// Revalidate individual job detail pages every 60 seconds
+export const revalidate = 60;
+export const dynamicParams = true; // Allow newly posted jobs to be served dynamically on-demand
+
 export async function generateStaticParams() {
   const jobs = await getJobs();
   return jobs.map((job) => ({

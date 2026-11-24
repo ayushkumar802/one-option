@@ -78,6 +78,14 @@ export async function getFeaturedJobs(): Promise<Job[]> {
   return jobs.filter((j) => j.featured);
 }
 
+// Fetch home page jobs: Featured jobs first (newest first), then recent jobs (newest first)
+export async function getHomePageJobs(limit = 3): Promise<Job[]> {
+  const allJobs = await getJobs();
+  const featured = allJobs.filter((j) => j.featured);
+  const nonFeatured = allJobs.filter((j) => !j.featured);
+  return [...featured, ...nonFeatured].slice(0, limit);
+}
+
 export async function getJobsByCategory(category: string): Promise<Job[]> {
   const jobs = await getJobs();
   if (category === 'All') return jobs;

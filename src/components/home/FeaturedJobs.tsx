@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { getJobs } from '@/data/jobs';
+import { getHomePageJobs } from '@/data/jobs';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { AnimateOnScroll } from '@/components/ui/AnimateOnScroll';
 import { JobCard } from '@/components/jobs/JobCard';
 
 export async function FeaturedJobs() {
-  // Show the 6 newest job openings on the home page
-  const jobs = (await getJobs()).slice(0, 6);
+  // Show top 3 jobs on home page: featured first (newest first), then recent jobs
+  const jobs = await getHomePageJobs(3);
 
   return (
     <section className="section" aria-label="Recent jobs">

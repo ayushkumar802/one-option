@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   },
 };
 
+// Revalidate home page every 60 seconds so newly added jobs appear automatically
+export const revalidate = 60;
+
 export default function HomePage() {
   return (
     <div className="home-page">
