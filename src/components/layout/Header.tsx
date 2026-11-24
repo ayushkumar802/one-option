@@ -20,17 +20,27 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-  // Resilient check for Home page: handles root '/', empty string '', or null during SSR/external link entry
-  const isHome = !pathname || pathname === '/' || pathname === '';
+  // Resilient check for Home page: handles root '/', '', null during SSR/hydration
+  const normalizedPath = pathname?.replace(/\/$/, '') || '';
+  const isHome = normalizedPath === '' || normalizedPath === '/';
 
   useEffect(() => {
+    // Prevent browser from restoring scroll position when entering via external link
+    if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      // The hero section is dark green (~800px tall). Use 200px threshold on home page
+      // so small initial offsets or address-bar collapses do not turn the navbar white
+      const threshold = isHome ? 200 : 40;
+      setScrolled(window.scrollY > threshold);
     };
+
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHome]);
 
   const headerClass = `site-header ${scrolled || !isHome ? 'scrolled' : ''}`;
 
