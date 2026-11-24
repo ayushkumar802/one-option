@@ -2126,6 +2126,8 @@ img {
   font-size: 0.88rem;
   font-weight: 600;
   color: #047857;
+  text-decoration: none;
+  cursor: pointer;
   transition: gap 0.15s ease, color 0.15s ease;
 }
 

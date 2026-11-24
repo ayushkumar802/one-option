@@ -110,9 +110,9 @@ export function JobCard({ job, project, priority = false }: JobCardProps) {
 
       {/* Footer with view link and copy to clipboard button */}
       <div className="job-card-footer">
-        <span className="job-card-link">
+        <Link href={`/jobs/${currentJob.slug}`} className="job-card-link">
           View &amp; Apply <ArrowRight size={13} />
-        </span>
+        </Link>
         <CopyJobButton slug={currentJob.slug} title={currentJob.title} />
       </div>
     </div>
