@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 import { usePathname } from 'next/navigation';
@@ -16,23 +16,51 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
+/** Check if a pathname represents the home page */
+function checkIsHome(path: string | null | undefined): boolean {
+  const normalized = (path || '').replace(/\/+$/, '') || '';
+  return normalized === '' || normalized === '/';
+}
+
 export function Header() {
+  const pathname = usePathname();
+  // SSR-safe default: use usePathname (correct during SSR; null → home during ISR)
+  const ssrIsHome = checkIsHome(pathname);
+
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname();
-  // Resilient check for Home page: handles root '/', '', null during SSR/hydration
-  const normalizedPath = pathname?.replace(/\/$/, '') || '';
-  const isHome = normalizedPath === '' || normalizedPath === '/';
+  const [isHome, setIsHome] = useState(ssrIsHome);
+  const coldLoad = useRef(true);
+
+  // On mount: use window.location.pathname for 100% reliable detection (survives ISR).
+  // On SPA navigation: react to usePathname() changes.
+  useEffect(() => {
+    const browserPath =
+      typeof window !== 'undefined' ? window.location.pathname : pathname || '/';
+    setIsHome(checkIsHome(browserPath));
+  }, [pathname]);
 
   useEffect(() => {
-    // Prevent browser from restoring scroll position when entering via external link
-    if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+    if (typeof window === 'undefined') return;
+
+    // Prevent browser scroll restoration for future navigations
+    if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
 
+    // On initial cold load of the home page, force scroll to top.
+    // Chrome restores the previous session's scroll position *before* React hydrates,
+    // so scrollRestoration='manual' set above is too late for the first load.
+    if (coldLoad.current) {
+      coldLoad.current = false;
+      if (isHome && window.scrollY > 0) {
+        window.scrollTo(0, 0);
+      }
+    }
+
     const handleScroll = () => {
-      // The hero section is dark green (~800px tall). Use 200px threshold on home page
-      // so small initial offsets or address-bar collapses do not turn the navbar white
+      // Hero is ~800px tall. Use 200px threshold on home so tiny browser offsets
+      // (address-bar collapse, touch drift) don't flip the navbar to white.
       const threshold = isHome ? 200 : 40;
       setScrolled(window.scrollY > threshold);
     };
