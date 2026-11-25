@@ -65,9 +65,9 @@ export function Header() {
     }
 
     const handleScroll = () => {
-      // Hero is ~800px tall. Use 200px threshold on home so tiny browser offsets
-      // (address-bar collapse, touch drift) don't flip the navbar to white.
-      const threshold = isHome ? 200 : 40;
+      // Trigger background at 30px so content scrolling under the header is cleanly covered
+      // without colliding or overlapping with header text
+      const threshold = 30;
       setScrolled(window.scrollY > threshold);
     };
 
