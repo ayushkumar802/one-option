@@ -16,28 +16,36 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
-/** Check if a pathname represents the home page */
-function checkIsHome(path: string | null | undefined): boolean {
-  const normalized = (path || '').replace(/\/+$/, '') || '';
-  return normalized === '' || normalized === '/';
+/** Helper to determine if a route is a subpage (jobs, services, about, contact) */
+function isKnownSubpage(path: string | null | undefined): boolean {
+  if (!path) return false;
+  return (
+    path.startsWith('/jobs') ||
+    path.startsWith('/services') ||
+    path.startsWith('/about') ||
+    path.startsWith('/contact')
+  );
 }
 
 export function Header() {
   const pathname = usePathname();
-  // SSR-safe default: use usePathname (correct during SSR; null → home during ISR)
-  const ssrIsHome = checkIsHome(pathname);
+  // Safe default: On SSR / build time, default to Home page (transparent navbar)
+  // unless explicitly building/rendering a known subpage
+  const ssrIsHome = !isKnownSubpage(pathname);
 
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isHome, setIsHome] = useState(ssrIsHome);
   const coldLoad = useRef(true);
 
-  // On mount: use window.location.pathname for 100% reliable detection (survives ISR).
-  // On SPA navigation: react to usePathname() changes.
+  // Sync isHome using browser window.location for 100% reliability against router cache
   useEffect(() => {
-    const browserPath =
-      typeof window !== 'undefined' ? window.location.pathname : pathname || '/';
-    setIsHome(checkIsHome(browserPath));
+    if (typeof window !== 'undefined') {
+      const browserPath = window.location.pathname;
+      setIsHome(!isKnownSubpage(browserPath));
+    } else {
+      setIsHome(!isKnownSubpage(pathname));
+    }
   }, [pathname]);
 
   useEffect(() => {
@@ -49,8 +57,6 @@ export function Header() {
     }
 
     // On initial cold load of the home page, force scroll to top.
-    // Chrome restores the previous session's scroll position *before* React hydrates,
-    // so scrollRestoration='manual' set above is too late for the first load.
     if (coldLoad.current) {
       coldLoad.current = false;
       if (isHome && window.scrollY > 0) {
@@ -74,7 +80,7 @@ export function Header() {
 
   return (
     <>
-      <header className={headerClass} role="banner">
+      <header className={headerClass} role="banner" suppressHydrationWarning>
         <div className="container d-flex align-items-center justify-content-between w-100">
           <Link href="/" className="header-logo" aria-label="OneOption — Manpower Indore">
             <span className="logo-text">

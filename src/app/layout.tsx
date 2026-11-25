@@ -126,6 +126,12 @@ export default function RootLayout({
       </head>
       <body>
         <Header />
+        {/* Instant pre-paint script: corrects any cached server HTML before first browser frame renders */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var p=window.location.pathname;var isSub=p.indexOf('/jobs')===0||p.indexOf('/services')===0||p.indexOf('/about')===0||p.indexOf('/contact')===0;if(!isSub&&window.scrollY<=60){var h=document.querySelector('.site-header');if(h)h.classList.remove('scrolled');}}catch(e){}})();`,
+          }}
+        />
         <main id="main-content">{children}</main>
         <Footer />
         <WhatsAppButton />
